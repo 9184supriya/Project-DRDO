@@ -1,3 +1,11 @@
+/*  
+* A*
+* in vb.net
+* 
+* Created   on: June 25, 2019
+* Author: goforsupriya@gmail.com
+*/
+
 Class Node
     Public x As Integer
     Public y As Integer
@@ -489,5 +497,5 @@ Module Module1
         End If
     End Function
 
-
+'Finally hardwork successful ;]
 End Module
