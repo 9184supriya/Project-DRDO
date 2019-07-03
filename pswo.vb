@@ -1,4 +1,3 @@
-'Not functioning that properly need to update certain parts
 Class Node
     Public x As Integer
     Public y As Integer
@@ -85,15 +84,25 @@ Module Module1
             update_current_velocity()
             update_current_position()
             calculate_current_fitness()
+            For i = 0 To population_size
+                If pbest_fitness(i) > current_fitness(i) Then
+                    pbest_fitness(i) = current_fitness(i)
+                    pbest_position_col(i) = cur_pos_col(i)
+                    pbest_position_row(i) = cur_pos_row(i)
+                End If
+            Next
             calculate_global_best()
             max_iteration = max_iteration - 1
 
-
+            For i = 0 To population_size
+                Console.WriteLine(cur_pos_row(i))
+                Console.WriteLine(cur_pos_col(i))
+            Next
         End While
 
         For i = 0 To population_size - 1
-            Console.WriteLine(gbest_part_i)
-            Console.WriteLine(gbest_part_j)
+            Console.WriteLine(pbest_position_col(i))
+            Console.WriteLine(pbest_position_row(i))
         Next
 
         Console.ReadLine()
@@ -172,16 +181,16 @@ Module Module1
 
     Function calculate_global_best()
         Dim min As Double
-        min = 1000.0
+
         For i = 0 To population_size - 1
-            If pbest_fitness(i) < min Then
-                min = pbest_fitness(i)
-                gbest_part_i = cur_pos_row(i)
-                gbest_part_j = cur_pos_col(i)
+            If pbest_fitness(i) < gbest_fitness Then
+                gbest_fitness = pbest_fitness(i)
+                gbest_part_i = pbest_position_row(i)
+                gbest_part_j = pbest_position_col(i)
             End If
 
         Next
-        gbest_fitness = min
+
     End Function
 
     Function update_current_velocity()
