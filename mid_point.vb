@@ -38,6 +38,13 @@ Module Module1
                 If isValid(-y_cor + x_center, x_cor + y_center) = True Then
                     grid(-y_cor + x_center, x_cor + y_center) = 0
                 End If
+                If isValid(-x_cor + x_center, y_cor + y_center) = True Then
+                    grid(-x_cor + x_center, y_cor + y_center) = 0
+                End If
+                If isValid(x_center, y_center - radius) = True Then
+                    grid(x_center, -radius + y_center) = 0
+                End If
+
             End If
 
             Dim P As Integer
@@ -85,7 +92,10 @@ Module Module1
 
 
 
+
+
                 End If
+
             End While
             For ii = 0 To 50 - 1
                 For jj = 0 To 50 - 1
@@ -94,8 +104,9 @@ Module Module1
                 Next
                 Console.WriteLine()
             Next
-            Console.ReadLine()
-            Next
+
+        Next
+        Console.ReadLine()
     End Sub
     Function isValid(ByVal x, ByVal y) As Boolean
         If x >= 0 And x < 50 And y >= 0 And y < 50 Then
